@@ -1,25 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  ShowSlidingMenu = () => {
+    console.log('Clicked');
+    const sidebar = document.querySelector(".sidebar");
+    const main = document.querySelector(".main");
+    const menu = document.querySelector(".menu");
+
+    menu.addEventListener("click", (e) => {
+      sidebar.classList.toggle("sidebar-active");
+      main.classList.toggle("main-sidebar-active");
+      e.currentTarget.classList.toggle("menu-active");
+    });
+  };
+  render() {
+    return (
+      <div className="container">
+        <div className="sidebar">
+          <ul className="sidebar_nav">
+            <li className="sidebar_item active">
+              <span className="material-icons-round">space_dashboard</span>
+            </li>
+            <li className="sidebar_item active">
+              <span className="material-icons-round">store</span>
+            </li>
+            <li className="sidebar_item active">
+              <span className="material-icons-round">inbox</span>
+            </li>
+            <li className="sidebar_item active">
+              <span className="material-icons-round">favorite</span>
+            </li>
+          </ul>
+        </div>
+        <main className="main">
+          <a href="#" className="menu" onClick={this.ShowSlidingMenu}>
+            menu
+          </a>
+          <div className="main_content">
+            <h1>MAIN CONTENT</h1>
+            <p>SQUISHED PARAGRAPH</p>
+          </div>
+        </main>
+      </div>
+    );
+  }
 }
 
 export default App;
